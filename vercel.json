@@ -1,0 +1,48 @@
+{
+  "name": "my-portfolio",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "REACT_APP_EMAILJS_PUBLIC_KEY": "s4IVVB-tXDBeaihnf",
+    "REACT_APP_EMAILJS_SERVICE_ID": "service_k5gy5h3",
+    "REACT_APP_EMAILJS_TEMPLATE_ID": "template_k9dpwg9"
+  }
+}
