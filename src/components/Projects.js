@@ -1,7 +1,8 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaLaptopCode, FaHeartbeat } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLaptopCode, FaHeartbeat, FaLock } from 'react-icons/fa';
 import project1Image from '../assets/mac2.jpg';
 import project2Image from '../assets/afya.jpg';
+import authProjectImage from '../assets/auth-demo.jpg'; // Make sure you have this image in your assets folder
 
 const Projects = () => {
   const projects = [
@@ -25,6 +26,18 @@ const Projects = () => {
       image: project2Image,
       hasDemo: false,
       icon: <FaHeartbeat />
+    },
+    // ✅ Updated project with live link
+    {
+      id: 3,
+      title: 'React Firebase Auth',
+      description: 'Modern authentication system with email/password, Google OAuth, and GitHub OAuth. Built with React, Firebase Auth, and Firestore. Features "Remember me", password reset, and clean minimal UI.',
+      languages: ['React', 'Firebase', 'CSS', 'JavaScript'],
+      liveLink: 'https://auth-page-beige.vercel.app/login', // 👈 Live demo link added
+      githubLink: 'https://github.com/Ramde-dev/auth-page',
+      image: authProjectImage,
+      hasDemo: true, // 👈 Changed to true because you now have a live link
+      icon: <FaLock />
     }
   ];
 
@@ -35,7 +48,6 @@ const Projects = () => {
         <div className="projects-grid">
           {projects.map((project) => (
             <div key={project.id} className="project-card">
-              {/* Image */}
               <div className="project-image-container">
                 <img 
                   src={project.image} 
@@ -43,20 +55,15 @@ const Projects = () => {
                   className="project-image"
                 />
               </div>
-
               <div className="project-info">
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-                
-                {/* Tech Stack */}
                 <div className="project-tech">
                   {project.languages.map((lang, idx) => (
                     <span key={idx} className="tech-badge">{lang}</span>
                   ))}
                 </div>
-
-                {/* Action Buttons */}
-                <div className={`project-buttons ${!project.hasDemo ? 'single-button' : ''}`}>
+                <div className="project-buttons">
                   <a 
                     href={project.githubLink} 
                     target="_blank" 
